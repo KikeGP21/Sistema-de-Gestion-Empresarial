@@ -42,6 +42,7 @@ def lector():
     # print(lista_palabras_pdf)
     # lista_palabras = pdf.split("\n")
     # print(lista_palabras)
+    #Actualizar
     pdf.close()
 
 
