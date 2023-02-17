@@ -27,13 +27,13 @@ def menu(nombre: str, seguir_jugando: bool):
                 print('\033[90m' + "\n***Escoge una opción válida***" + '\033[0m')
                 menu(nombre, seguir_jugando)
 
-            respuesta = input('\033[95m' + "¿Quiéres seguir jugando? (s/n)   " + '\033[0m')
-            if (respuesta.lower() == 'n') or (respuesta.lower() == 'no'):
-                seguir_jugando = False
-            elif(respuesta.lower() == 's') or (respuesta.lower() == 'si'):
-                seguir_jugando = True
-            else:
+            respuesta = ""
+            while((respuesta.lower() != 'n') and (respuesta.lower() != 'no') and (respuesta.lower() != 's') and (respuesta.lower() != 'si')):
                 respuesta = input('\033[95m' + "¿Quiéres seguir jugando? (s/n)   " + '\033[0m')
+                if (respuesta.lower() == 'n') or (respuesta.lower() == 'no'):
+                    seguir_jugando = False
+                elif(respuesta.lower() == 's') or (respuesta.lower() == 'si'):
+                    seguir_jugando = True
 
     except Exception:
         print('\033[90m' + "\n***Escoge una opción válida***" + '\033[0m')
