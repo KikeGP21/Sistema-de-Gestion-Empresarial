@@ -26,6 +26,7 @@ def main():
     if(introducir_bbdd):
         mariaDB()
 
+# Método para extraer los datos del PDF.
 def lectorPDF():
 
     global lista_palabras_pdf
@@ -34,13 +35,13 @@ def lectorPDF():
     # 1. Abrimos el archivo donde vamos a escribir los datos del cliente.
     pdf = fitz.open('Autorización de funcionamiento de sala de bingo-ABG.pdf')
     pdf_reader = pdf.load_page(0) # Primera página
-    texto_pdf = pdf_reader.get_text()
+    texto_pdf = pdf_reader.get_text() # Extracción de texto.
 
     lista_palabras_pdf = texto_pdf.split("\n")
 
     documento_datos_cliente = open('Datos cliente.txt', 'w', encoding='utf-8')
     
-    # 2. Escribimos los datos del cliente.
+    # 2. Escribimos los datos del cliente en el documento de texto.
     documento_datos_cliente.write("RAZÓN SOCIAL/DENOMINACIÓN --> " + lista_palabras_pdf[7] + "\n")
     documento_datos_cliente.write("NIF --> " + lista_palabras_pdf[9] + "\n")
     documento_datos_cliente.write("CÓDIGO DE INSCRIPCIÓN --> " + lista_palabras_pdf[11] + "\n")
@@ -64,8 +65,8 @@ def lectorPDF():
     telefono = lista_palabras_pdf[49].split(" ")
     documento_datos_cliente.write("Nº TELÉFONO --> " + telefono[3])
 
-    pdf.close()
     documento_datos_cliente.close()
+    pdf.close()
     print('\n' + '\033[92m' + "Datos insertados en el documento correctamente." + '\033[0m')
 
     # Guardamos todos los datos en la variable 'datos_cliente' extrayéndolos del documento 'Datos cliente.txt'.
