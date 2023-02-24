@@ -49,52 +49,16 @@ def jugar():
         '''
       +-----+
       |     |
+      0    |
+    2 12   |
+      3    |
+     44   |
             |
-            |
-            |
-            |
-    =========''',
-        '''
-      +-----+
-      |     |
-      😁    |
-            |
-            |
-            |
-    =========''',
-        '''
-      +-----+
-      |     |
-      🙂    |
-      👔    |
-            |
-            |
-    =========''',
-        '''
-      +-----+
-      |     |
-      😐    |
-    🖐👔🖐  |
-            |
-            |
-    =========''',
-        '''
-      +-----+
-      |     |
-      😑    |
-    🖐👔🖐  |
-      🩳    |
-            |
-    =========''',
-        '''
-      +-----+
-      |     |
-      🤕    |
-    🖐👔🖐  |
-      🩳    |
-     👟👟   |
-    =========''',
+    ========='''
     ]
+
+    partes_muñeco = '😶👔🖐👖👟'
+    escena_pre = ahorcado[0]
 
     # 1.  Leemos las palabras y con la clase random seleccionamos una al azar.
     lista_palabras = leer()
@@ -154,10 +118,23 @@ def jugar():
             # Si no es el caso, aumentamos en una unidad los fallos del usuario.
         else:
             fallos += 1
+            # print("Tienes {} fallos. (El máximo son 5).".format(fallos))
+            for i in range(0, fallos):
+                muñeco = partes_muñeco[i]
+                escena_pre = escena_pre.replace(str(i), muñeco)
+            
+            escena = escena_pre
+
+            for i in range(0, len(partes_muñeco)):
+                if(i == 2):
+                    escena = escena.replace(str(i), " ")   
+                else:    
+                    escena = escena.replace(str(i), "  ")
+
             if (fallos < 5):
-                # print("Tienes {} fallos. (El máximo son 5).".format(fallos))
-                print('\033[94m' + ahorcado[fallos] + '\033[0m')
+                print('\033[94m' + escena + '\033[0m')
             if (fallos == 5):
+                print('\033[94m' + escena + '\033[0m')
                 print('\033[95m' + "Has perdido 💀" + '\033[0m')
                 print("La palabra era --> " + '\033[95m' + palabra_escogida + '\033[0m')
                 break
